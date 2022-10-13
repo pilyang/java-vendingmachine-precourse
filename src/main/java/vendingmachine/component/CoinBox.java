@@ -10,4 +10,13 @@ public class CoinBox {
         coins = new HashMap<>(Coin.values().length);
     }
 
+
+    public void addCoin(Coin coin, int number){
+        int totalCoins = 0;
+        if(coins.containsKey(coin)){
+            totalCoins = coins.get(coin);
+        }
+        totalCoins += number;
+        coins.put(coin, totalCoins);
+    }
 }
