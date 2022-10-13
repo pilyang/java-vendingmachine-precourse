@@ -45,7 +45,7 @@
 
 ### Coin
 - [x] amount 반환 함수
-- [ ] find by amount
+- [x] find by amount
 - [ ] 동전 수로 총액 계산
 
 ### Coin List : 자판기 동전들 리스트
