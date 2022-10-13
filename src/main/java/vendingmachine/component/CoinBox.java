@@ -25,4 +25,11 @@ public class CoinBox {
         totalCoin -= number;
         coins.put(coin, totalCoin);
     }
+
+    public int getCoinNumber(Coin coin){
+        if(coins.containsKey(coin)){
+            return coins.get(coin).intValue();
+        }
+        return 0;
+    }
 }
