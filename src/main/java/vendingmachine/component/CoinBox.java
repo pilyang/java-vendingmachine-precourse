@@ -19,4 +19,10 @@ public class CoinBox {
         totalCoins += number;
         coins.put(coin, totalCoins);
     }
+
+    public void subCoin(Coin coin, int number){
+        int totalCoin = coins.get(coin);
+        totalCoin -= number;
+        coins.put(coin, totalCoin);
+    }
 }
