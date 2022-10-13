@@ -1,4 +1,4 @@
-package vendingmachine;
+package vendingmachine.component;
 
 public enum Coin {
     COIN_500(500),
