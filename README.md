@@ -44,7 +44,7 @@
 - [ ] 상품 수량 변경
 
 ### Coin
-- [ ] amount 반환 함수
+- [x] amount 반환 함수
 - [ ] find by amount
 - [ ] 동전 수로 총액 계산
 
