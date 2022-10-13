@@ -18,6 +18,10 @@ public enum Coin {
         return amount;
     }
 
+    public int totalAmount(int number){
+        return amount*number;
+    }
+
     public static Coin findByAmount(int amount){
         return Arrays.stream(Coin.values())
                 .filter(value -> value.amount == amount)
