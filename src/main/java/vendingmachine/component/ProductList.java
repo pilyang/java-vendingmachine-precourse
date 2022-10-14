@@ -10,4 +10,18 @@ public class ProductList {
     public ProductList(){
         products = new HashMap<>();
     }
+
+    public void addProduct(Product product){
+        addProduct(product, 1);
+    }
+
+    public void addProduct(Product product, int quantity){
+        if(products.containsKey(product)){
+            int stock = products.get(product).intValue();
+            products.put(product, stock + quantity);
+            return;
+        }
+
+        products.put(product, quantity);
+    }
 }
