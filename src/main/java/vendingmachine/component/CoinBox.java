@@ -43,7 +43,29 @@ public class CoinBox {
         return totalMoney;
     }
 
-    public int[] getChanges(int money){
+    public HashMap<Coin, Integer> getChanges(int money){
+        HashMap<Coin, Integer> changes = new HashMap<>();
+
+        for(Coin coin : Coin.values()){
+            int coinCount = 0;
+            coinCount = calculateMaxCoinNumber(coin, money);
+            if(coinCount != 0){
+                changes.put(coin, coinCount);
+                money -= coin.totalAmount(coinCount);
+                subCoin(coin, coinCount);
+            }
+        }
+
+        return changes;
+    }
+
+    private int calculateMaxCoinNumber(Coin coin, int money){
+        int coinCount = 0;
+        coinCount = money/coin.amount();
+        if(coinCount > getCoinNumber(coin)) {
+            coinCount = getCoinNumber(coin);
+        }
+        return coinCount;
     }
 
     private void validateSubCoin(Coin coin, int number) throws IllegalArgumentException{
