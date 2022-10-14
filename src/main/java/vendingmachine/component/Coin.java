@@ -9,6 +9,7 @@ public enum Coin {
     COIN_10(10);
 
     private final int amount;
+    public static final int COIN_TYPE_NUM = Coin.values().length;
 
     Coin(final int amount) {
         this.amount = amount;

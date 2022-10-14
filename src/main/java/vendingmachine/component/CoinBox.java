@@ -4,10 +4,11 @@ import java.util.HashMap;
 
 public class CoinBox {
 
+
     private HashMap<Coin, Integer> coins;
 
     public CoinBox(){
-        coins = new HashMap<>(Coin.values().length);
+        coins = new HashMap<>(Coin.COIN_TYPE_NUM);
     }
 
 
@@ -34,6 +35,16 @@ public class CoinBox {
         return 0;
     }
 
+    public int getTotalMoney(){
+        int totalMoney = 0;
+        for(Coin coin : Coin.values()){
+            totalMoney += coin.totalAmount(getCoinNumber(coin));
+        }
+        return totalMoney;
+    }
+
+    public int[] getChanges(int money){
+    }
 
     private void validateSubCoin(Coin coin, int number) throws IllegalArgumentException{
         if(getCoinNumber(coin) < number){
