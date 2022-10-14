@@ -24,4 +24,13 @@ public class ProductList {
 
         products.put(product, quantity);
     }
+
+    public void takeOutProduct(Product product){
+        takeOutProduct(product, 1);
+    }
+
+    public void takeOutProduct(Product product, int quantity){
+        int stock = products.get(product).intValue();
+        products.put(product, stock-quantity);
+    }
 }
