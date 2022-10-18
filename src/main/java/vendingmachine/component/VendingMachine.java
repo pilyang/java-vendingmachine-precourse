@@ -27,6 +27,8 @@ public class VendingMachine {
     public void sellProduct(String productName) throws IllegalArgumentException{
         Product product = productList.findByName(productName);
         validateProductPrice(product);
+        validateProductStock(product);
+        useMoney(product.getPrice());
     }
 
 
@@ -41,6 +43,9 @@ public class VendingMachine {
         return minimumPrice;
     }
 
+    private void useMoney(int price){
+        this.insertedMoney -= price;
+    }
 
     public void validateProductPrice(Product product) throws IllegalArgumentException{
         if(product.getPrice() > insertedMoney){
