@@ -29,7 +29,7 @@ public class ProductList {
         takeOutProduct(product, 1);
     }
 
-    public void takeOutProduct(Product product, int quantity){
+    public void takeOutProduct(Product product, int quantity) throws IllegalArgumentException{
         validateProduct(product);
         int stock = products.get(product).intValue();
         validateProductQuantity(stock, quantity);
