@@ -44,9 +44,9 @@
 - [x] 상품 빼기
 
 
-- [ ] validation
+- [x] validation
   - [x] 상품 존재 유무 검증
-  - [ ] 상품 수량 검증
+  - [x] 상품 수량 검증
 
 ### Coin
 - [x] amount 반환 함수
