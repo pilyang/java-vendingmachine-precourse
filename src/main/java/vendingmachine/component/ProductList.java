@@ -47,6 +47,11 @@ public class ProductList {
         return products.keySet().toArray(new Product[0]);
     }
 
+    public int getProductStock(Product product){
+        validateProduct(product);
+        return products.get(product).intValue();
+    }
+
     public void validateProduct(Product product) throws IllegalArgumentException{
         if(!products.containsKey(product)){
             throw new IllegalArgumentException("[ERROR] 상품이 존재하지 않습니다.");

@@ -48,4 +48,10 @@ public class VendingMachine {
         }
     }
 
+    public void validateProductStock(Product product) throws IllegalArgumentException{
+        if(productList.getProductStock(product) <= 0) {
+            throw new IllegalArgumentException("[ERROR] 상품의 제고가 부족합니다.");
+        }
+    }
+
 }
