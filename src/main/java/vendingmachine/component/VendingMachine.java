@@ -23,4 +23,16 @@ public class VendingMachine {
     public void addProduct(Product product, int quantity){
         productList.addProduct(product, quantity);
     }
+
+    public int getMinimumProductPrice(){
+        Product[] products = productList.getProductArray();
+        int minimumPrice = products[0].getPrice();
+        for(int i=1; i<products.length; i++){
+            if(products[i].getPrice() < minimumPrice){
+                minimumPrice = products[i].getPrice();
+            }
+        }
+        return minimumPrice;
+    }
+
 }

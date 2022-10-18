@@ -43,6 +43,10 @@ public class ProductList {
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] " + name + "이라는 상품이 존재하지 않습니다."));
     }
 
+    public Product[] getProductArray(){
+        return products.keySet().toArray(new Product[0]);
+    }
+
     public void validateProduct(Product product) throws IllegalArgumentException{
         if(!products.containsKey(product)){
             throw new IllegalArgumentException("[ERROR] 상품이 존재하지 않습니다.");
