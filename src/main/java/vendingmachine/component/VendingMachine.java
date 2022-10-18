@@ -19,4 +19,8 @@ public class VendingMachine {
     public void addCoin(Coin coin, int number){
         coinBox.addCoin(coin, number);
     }
+
+    public void addProduct(Product product, int quantity){
+        productList.addProduct(product, quantity);
+    }
 }
