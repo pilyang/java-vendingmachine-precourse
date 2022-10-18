@@ -29,6 +29,7 @@ public class VendingMachine {
         validateProductPrice(product);
         validateProductStock(product);
         useMoney(product.getPrice());
+        productList.takeOutProduct(product);
     }
 
 
