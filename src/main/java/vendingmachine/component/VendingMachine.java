@@ -24,6 +24,12 @@ public class VendingMachine {
         productList.addProduct(product, quantity);
     }
 
+    public void sellProduct(String productName) throws IllegalArgumentException{
+        Product product = productList.findByName(productName);
+        validateProductPrice(product);
+    }
+
+
     public int getMinimumProductPrice(){
         Product[] products = productList.getProductArray();
         int minimumPrice = products[0].getPrice();
@@ -33,6 +39,13 @@ public class VendingMachine {
             }
         }
         return minimumPrice;
+    }
+
+
+    public void validateProductPrice(Product product) throws IllegalArgumentException{
+        if(product.getPrice() > insertedMoney){
+            throw new IllegalArgumentException("[ERROR] 투입 금액이 부족합니다.");
+        }
     }
 
 }
