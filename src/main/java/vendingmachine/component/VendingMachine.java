@@ -1,5 +1,7 @@
 package vendingmachine.component;
 
+import java.util.HashMap;
+
 public class VendingMachine {
 
     private CoinBox coinBox;
@@ -32,6 +34,9 @@ public class VendingMachine {
         productList.takeOutProduct(product);
     }
 
+    public HashMap<Coin, Integer> returnChanges(){
+        return coinBox.getChanges(insertedMoney);
+    }
 
     public int getMinimumProductPrice(){
         Product[] products = productList.getProductArray();
