@@ -49,6 +49,17 @@ public class VendingMachine {
         return minimumPrice;
     }
 
+    public boolean isAvailable(){
+        return true;
+    }
+
+    private boolean hasEnoughMoney(){
+        if(getMinimumProductPrice() > insertedMoney){
+            return false;
+        }
+        return true;
+    }
+
     private void useMoney(int price){
         this.insertedMoney -= price;
     }
