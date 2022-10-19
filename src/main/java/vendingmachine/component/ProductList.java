@@ -43,13 +43,20 @@ public class ProductList {
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] " + name + "이라는 상품이 존재하지 않습니다."));
     }
 
-    public Product[] getProductArray(){
-        return products.keySet().toArray(new Product[0]);
-    }
-
     public int getProductStock(Product product){
         validateProduct(product);
         return products.get(product).intValue();
+    }
+
+    public int getMinimumProductPrice(){
+        Product[] productArray = products.keySet().toArray(new Product[0]);
+        int minimumPrice = productArray[0].getPrice();
+        for(int i=1; i<productArray.length; i++){
+            if(productArray[i].getPrice() < minimumPrice){
+                minimumPrice = productArray[i].getPrice();
+            }
+        }
+        return minimumPrice;
     }
 
     public void validateProduct(Product product) throws IllegalArgumentException{

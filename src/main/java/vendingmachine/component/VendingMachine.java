@@ -38,23 +38,12 @@ public class VendingMachine {
         return coinBox.getChanges(insertedMoney);
     }
 
-    public int getMinimumProductPrice(){
-        Product[] products = productList.getProductArray();
-        int minimumPrice = products[0].getPrice();
-        for(int i=1; i<products.length; i++){
-            if(products[i].getPrice() < minimumPrice){
-                minimumPrice = products[i].getPrice();
-            }
-        }
-        return minimumPrice;
-    }
-
     public boolean isAvailable(){
         return true;
     }
 
     private boolean hasEnoughMoney(){
-        if(getMinimumProductPrice() > insertedMoney){
+        if(productList.getMinimumProductPrice() > insertedMoney){
             return false;
         }
         return true;
