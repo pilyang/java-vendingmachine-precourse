@@ -40,6 +40,12 @@ public class VendingMachine {
     }
 
     public boolean isAvailable(){
+        if( !hasEnoughProductStock() ){
+            return false;
+        }
+        if( !hasEnoughMoney() ){
+            return false;
+        }
         return true;
     }
 
