@@ -1,6 +1,7 @@
 package vendingmachine.component;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class VendingMachine {
 
@@ -47,6 +48,16 @@ public class VendingMachine {
             return false;
         }
         return true;
+    }
+
+    private boolean hasEnoughProductStock(){
+        Set<Product> products = productList.getProducts();
+        for(Product product : products){
+            if(productList.getProductStock(product) > 0){
+                return true;
+            }
+        }
+        return false;
     }
 
     private void useMoney(int price){
