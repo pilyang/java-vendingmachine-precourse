@@ -1,7 +1,7 @@
 package vendingmachine.component;
 
 import java.util.HashMap;
-import java.util.List;
+import java.util.Set;
 
 public class ProductList {
 
@@ -49,14 +49,21 @@ public class ProductList {
     }
 
     public int getMinimumProductPrice(){
-        Product[] productArray = products.keySet().toArray(new Product[0]);
+        Product[] productArray = products.keySet().stream()
+                .filter(p -> getProductStock(p)>0 )
+                .toArray(Product[]::new);
+
         int minimumPrice = productArray[0].getPrice();
         for(int i=1; i<productArray.length; i++){
-            if(productArray[i].getPrice() < minimumPrice){
+            if( productArray[i].getPrice() < minimumPrice ){
                 minimumPrice = productArray[i].getPrice();
             }
         }
         return minimumPrice;
+    }
+
+    public Set<Product> getProducts() {
+        return products.keySet();
     }
 
     public void validateProduct(Product product) throws IllegalArgumentException{
