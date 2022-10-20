@@ -24,6 +24,8 @@ public class VendingMachineController {
 
     public void startUsingVendingMachine(){
 
+        addInitialMoney();
+
     }
 
     private void addInitialMoney(){
@@ -75,7 +77,7 @@ public class VendingMachineController {
     }
 
     private List<Integer> getNumbersInRange(int start, int end){
-        return IntStream.range(start, end)
+        return IntStream.range(start, end+1)
                 .boxed()
                 .collect(Collectors.toList());
     }
