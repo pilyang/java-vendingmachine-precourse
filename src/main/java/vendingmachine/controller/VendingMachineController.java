@@ -36,6 +36,7 @@ public class VendingMachineController {
             vendingMachine.addCoin(coin, coins.get(coin));
         }
 
+        printCoins();
 
     }
 
@@ -58,6 +59,19 @@ public class VendingMachineController {
         }
 
         return coins;
+    }
+
+    private void printCoins(){
+        HashMap<Coin, Integer> coins = vendingMachine.getCurrentCoins();
+        System.out.println("자판기가 보유한 동전");
+        for(Coin coin : Coin.values()){
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(coin.korean());
+            stringBuilder.append(" - ");
+            stringBuilder.append(coins.get(coin));
+            stringBuilder.append("개");
+            System.out.println(stringBuilder.toString());
+        }
     }
 
     private List<Integer> getNumbersInRange(int start, int end){

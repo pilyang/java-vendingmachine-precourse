@@ -35,6 +35,14 @@ public class VendingMachine {
         productList.takeOutProduct(product);
     }
 
+    public HashMap<Coin, Integer> getCurrentCoins(){
+        HashMap<Coin, Integer> coinsResult = new HashMap<>();
+        for(Coin coin : Coin.values()){
+            coinsResult.put(coin, coinBox.getCoinNumber(coin));
+        }
+        return coinsResult;
+    }
+
     public HashMap<Coin, Integer> returnChanges(){
         return coinBox.getChanges(insertedMoney);
     }
