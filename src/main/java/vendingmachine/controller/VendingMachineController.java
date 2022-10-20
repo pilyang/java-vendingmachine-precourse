@@ -82,4 +82,10 @@ public class VendingMachineController {
                 .boxed()
                 .collect(Collectors.toList());
     }
+
+    private void validateIsNumber(String number){
+        if( !number.matches("\\d+") ){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+        }
+    }
 }
