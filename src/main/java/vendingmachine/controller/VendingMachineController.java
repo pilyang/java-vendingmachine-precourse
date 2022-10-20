@@ -88,4 +88,10 @@ public class VendingMachineController {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
     }
+
+    private void validateNumberDividedWith10(int money){
+        if( money%10 != 0) {
+            throw new IllegalArgumentException("[ERROR] 입력 금액이 10으로 나누어 떨어지지 않습니다.")
+        }
+    }
 }
