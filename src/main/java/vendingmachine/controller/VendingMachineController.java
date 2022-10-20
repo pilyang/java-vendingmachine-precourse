@@ -65,6 +65,7 @@ public class VendingMachineController {
 
     private void printCoins(){
         HashMap<Coin, Integer> coins = vendingMachine.getCurrentCoins();
+        System.out.println();
         System.out.println("자판기가 보유한 동전");
         for(Coin coin : Coin.values()){
             StringBuilder stringBuilder = new StringBuilder();
