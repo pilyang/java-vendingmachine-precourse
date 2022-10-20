@@ -4,6 +4,7 @@ import vendingmachine.component.Coin;
 import vendingmachine.component.VendingMachine;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import camp.nextstep.edu.missionutils.Console;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -25,6 +26,18 @@ public class VendingMachineController {
 
     }
 
+    private void addInitialMoney(){
+        System.out.println("자판기가 보유하고 있는 금액을 입력해 주세요.");
+        String moneyStr = Console.readLine();
+        int money = Integer.parseInt(moneyStr);
+
+        HashMap<Coin, Integer> coins = generateCoins(money);
+        for(Coin coin : Coin.values()){
+            vendingMachine.addCoin(coin, coins.get(coin));
+        }
+
+
+    }
 
     private HashMap<Coin, Integer> generateCoins(int money){
 
