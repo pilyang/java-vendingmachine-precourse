@@ -15,7 +15,7 @@
 
 
 - [ ] Controller Validation
-  - [ ] 돈 입력 validation
+  - [x] 돈 입력 validation
     - [x] 양의 정수 입력인가
     - [x] 10으로 나누어 떨어지는가
   - [ ] 상품 입력 형식을 맞춰서 입력했는가( 대괄호[] 와 세미콜론; 사용)

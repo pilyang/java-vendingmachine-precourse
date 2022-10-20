@@ -31,6 +31,7 @@ public class VendingMachineController {
     private void addInitialMoney(){
         System.out.println("자판기가 보유하고 있는 금액을 입력해 주세요.");
         String moneyStr = Console.readLine();
+        validateMoney(moneyStr);
         int money = Integer.parseInt(moneyStr);
 
         HashMap<Coin, Integer> coins = generateCoins(money);
@@ -81,6 +82,12 @@ public class VendingMachineController {
         return IntStream.range(start, end+1)
                 .boxed()
                 .collect(Collectors.toList());
+    }
+
+    private void validateMoney(String money){
+        validateIsNumber(money);
+        int moneyIntValue = Integer.parseInt(money);
+        validateNumberDividedWith10(moneyIntValue);
     }
 
     private void validateIsNumber(String number){
