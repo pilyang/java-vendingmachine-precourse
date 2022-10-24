@@ -43,6 +43,10 @@ public class VendingMachine {
         return coinsResult;
     }
 
+    public int getCurrentUserMoney(){
+        return this.insertedMoney;
+    }
+
     public HashMap<Coin, Integer> returnChanges(){
         return coinBox.getChanges(insertedMoney);
     }

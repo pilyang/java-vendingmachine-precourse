@@ -81,6 +81,11 @@ public class VendingMachineController {
         }
     }
 
+    private void printUserMoney(){
+        int money = vendingMachine.getCurrentUserMoney();
+        System.out.println("\n투입 금액: " + money + "원");
+    }
+
     private String[][] makeProducts(String productsInput){
 
         String[] tempProducts = productsInput.split(";");
