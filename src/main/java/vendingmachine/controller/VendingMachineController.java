@@ -26,23 +26,27 @@ public class VendingMachineController {
     public void startUsingVendingMachine(){
 
         addInitialMoney();
+        printCoins();
         readProducts();
 
     }
 
     private void addInitialMoney(){
-        System.out.println("자판기가 보유하고 있는 금액을 입력해 주세요.");
-        String moneyStr = Console.readLine();
-        validateMoney(moneyStr);
-        int money = Integer.parseInt(moneyStr);
-
-        HashMap<Coin, Integer> coins = generateCoins(money);
-        for(Coin coin : Coin.values()){
-            vendingMachine.addCoin(coin, coins.get(coin));
+        while (true) {
+            try {
+                System.out.println("자판기가 보유하고 있는 금액을 입력해 주세요.");
+                String moneyStr = Console.readLine();
+                validateMoney(moneyStr);
+                int money = Integer.parseInt(moneyStr);
+                HashMap<Coin, Integer> coins = generateCoins(money);
+                for(Coin coin : Coin.values()){
+                    vendingMachine.addCoin(coin, coins.get(coin));
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
         }
-
-        printCoins();
-
     }
 
     private void readProducts(){
