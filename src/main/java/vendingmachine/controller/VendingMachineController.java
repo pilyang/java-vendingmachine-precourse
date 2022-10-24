@@ -16,6 +16,7 @@ import java.util.stream.IntStream;
 public class VendingMachineController {
 
     private static final Coin MIN_UNIT_COIN = Coin.COIN_10;
+    private static final String PRODUCT_INPUT_REGEXP = "^(\\[[^,]+,[0-9]+,[0-9]+\\])(;\\[[^,]+,[0-9]+,[0-9]+\\])*$";
 
     private VendingMachine vendingMachine;
 
@@ -42,7 +43,7 @@ public class VendingMachineController {
                 for(Coin coin : Coin.values()){
                     vendingMachine.addCoin(coin, coins.get(coin));
                 }
-                break;
+                return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
@@ -50,13 +51,19 @@ public class VendingMachineController {
     }
 
     private void readProducts(){
-        System.out.println();
-        System.out.println("상품명과 가격, 수량을 입력해 주세요.");
-
-        String productsInput = Console.readLine();
-        String[][] productsString = makeProducts(productsInput);
-        for(String[] productInfo : productsString){
-            addProduct(productInfo);
+        while(true) {
+            try {
+                System.out.println("\n상품명과 가격, 수량을 입력해 주세요.");
+                String productsInput = Console.readLine();
+                validateProductInputFormat(productsInput);
+                String[][] productsString = makeProducts(productsInput);
+                for (String[] productInfo : productsString) {
+                    addProduct(productInfo);
+                }
+                return;
+            } catch (IllegalArgumentException e){
+                System.out.println(e);
+            }
         }
     }
 
@@ -73,10 +80,12 @@ public class VendingMachineController {
         return products;
     }
 
-    private void addProduct(String[] productInfo){
+    private void addProduct(String[] productInfo) throws IllegalArgumentException{
         String name = productInfo[0];
         int price = Integer.parseInt(productInfo[1]);
         int quantity = Integer.parseInt(productInfo[2]);
+
+        validateNumberDividedWith10(price);
 
         Product product = new Product(name, price);
         vendingMachine.addProduct(product, quantity);
@@ -123,21 +132,27 @@ public class VendingMachineController {
                 .collect(Collectors.toList());
     }
 
-    private void validateMoney(String money){
+    private void validateMoney(String money) throws IllegalArgumentException{
         validateIsNumber(money);
         int moneyIntValue = Integer.parseInt(money);
         validateNumberDividedWith10(moneyIntValue);
     }
 
-    private void validateIsNumber(String number){
+    private void validateIsNumber(String number) throws IllegalArgumentException{
         if( !number.matches("\\d+") ){
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
     }
 
-    private void validateNumberDividedWith10(int money){
+    private void validateNumberDividedWith10(int money) throws IllegalArgumentException{
         if( money%10 != 0) {
             throw new IllegalArgumentException("[ERROR] 입력 금액이 10으로 나누어 떨어지지 않습니다.");
+        }
+    }
+
+    private void validateProductInputFormat(String input) throws IllegalArgumentException{
+        if( !input.matches(PRODUCT_INPUT_REGEXP) ){
+            throw new IllegalArgumentException("[ERROR] 상품 입력 형식을 맞춰주세요. 상품명, 가격, 수량은 쉼표로, 개별 상품은 대괄호([])로 묶어 세미콜론(;)으로 구분해주세요.");
         }
     }
 }
