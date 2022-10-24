@@ -1,6 +1,7 @@
 package vendingmachine.controller;
 
 import vendingmachine.component.Coin;
+import vendingmachine.component.Product;
 import vendingmachine.component.VendingMachine;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -25,6 +26,7 @@ public class VendingMachineController {
     public void startUsingVendingMachine(){
 
         addInitialMoney();
+        readProducts();
 
     }
 
@@ -41,6 +43,39 @@ public class VendingMachineController {
 
         printCoins();
 
+    }
+
+    private void readProducts(){
+        System.out.println();
+        System.out.println("상품명과 가격, 수량을 입력해 주세요.");
+
+        String productsInput = Console.readLine();
+        String[][] productsString = makeProducts(productsInput);
+        for(String[] productInfo : productsString){
+            addProduct(productInfo);
+        }
+    }
+
+    private String[][] makeProducts(String productsInput){
+
+        String[] tempProducts = productsInput.split(";");
+        String[][] products = new String[tempProducts.length][3];
+
+        for(int i=0; i< tempProducts.length; i++){
+            String product = tempProducts[i].substring(1, tempProducts[i].length()-1 );
+            products[i] = product.split(",");
+        }
+
+        return products;
+    }
+
+    private void addProduct(String[] productInfo){
+        String name = productInfo[0];
+        int price = Integer.parseInt(productInfo[1]);
+        int quantity = Integer.parseInt(productInfo[2]);
+
+        Product product = new Product(name, price);
+        vendingMachine.addProduct(product, quantity);
     }
 
     private HashMap<Coin, Integer> generateCoins(int money){
