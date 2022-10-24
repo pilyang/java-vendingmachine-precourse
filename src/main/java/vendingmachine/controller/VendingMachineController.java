@@ -99,6 +99,21 @@ public class VendingMachineController {
         }
     }
 
+    private void printChanges(){
+        System.out.println("잔돈");
+        HashMap<Coin, Integer> changes = vendingMachine.returnChanges();
+        for(Coin coin : Coin.values()){
+            if(changes.containsKey(coin)){
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(coin.korean());
+                stringBuilder.append(" - ");
+                stringBuilder.append(changes.get(coin));
+                stringBuilder.append("개");
+                System.out.println(stringBuilder.toString());
+            }
+        }
+    }
+
     private String[][] makeProducts(String productsInput){
 
         String[] tempProducts = productsInput.split(";");
