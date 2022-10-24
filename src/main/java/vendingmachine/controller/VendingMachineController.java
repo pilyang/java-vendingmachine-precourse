@@ -29,6 +29,13 @@ public class VendingMachineController {
         addInitialMoney();
         printCoins();
         readProducts();
+        inputUserMoney();
+        while (vendingMachine.isAvailable()) {
+            printUserMoney();
+            buyProduct();
+        }
+        printUserMoney();
+        printChanges();
 
     }
 
