@@ -150,17 +150,16 @@ public class VendingMachineController {
         HashMap<Coin, Integer> coins = new HashMap<>();
         List<Integer> possibleCoinNumList;
         int coinNum = 0;
-
         for(Coin coin : Coin.values()){
-            possibleCoinNumList = getNumbersInRange(0, money/coin.amount());
+            int minNum = 0;
+            int maxNum = money/coin.amount();
+            if(coin == MIN_UNIT_COIN){
+                minNum = maxNum;
+            }
+            possibleCoinNumList = getNumbersInRange(minNum, maxNum);
             coinNum = Randoms.pickNumberInList(possibleCoinNumList);
             coins.put(coin, coinNum);
             money -= coin.totalAmount(coinNum);
-        }
-
-        if(money != 0){
-            coinNum = money/ MIN_UNIT_COIN.amount();
-            coins.put(MIN_UNIT_COIN, coins.get(MIN_UNIT_COIN).intValue()+coinNum);
         }
 
         return coins;
