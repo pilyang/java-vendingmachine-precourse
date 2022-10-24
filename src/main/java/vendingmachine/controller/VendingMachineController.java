@@ -86,6 +86,19 @@ public class VendingMachineController {
         System.out.println("\n투입 금액: " + money + "원");
     }
 
+    private void buyProduct(){
+        while (true){
+            try {
+                System.out.println("구매할 상품명을 입력해주세요");
+                String productName = Console.readLine();
+                vendingMachine.sellProduct(productName);
+                return;
+            } catch (IllegalArgumentException e){
+                System.out.println(e);
+            }
+        }
+    }
+
     private String[][] makeProducts(String productsInput){
 
         String[] tempProducts = productsInput.split(";");
